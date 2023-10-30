@@ -1,6 +1,7 @@
 package org.lessons.java;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
     //Attribute
@@ -91,5 +92,9 @@ public class Event {
         if(totSeats <= 0){
             throw new IllegalArgumentException("I posti non possono essere minori o uguali a zero.");
         }
+    }
+
+    public String getFormattedDate(){
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
