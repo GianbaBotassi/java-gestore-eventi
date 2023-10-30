@@ -30,18 +30,23 @@ public class Event {
     }
 
     public void book(int seats){
-        int originalBookeadSeats = bookedSeats;
-        bookedSeats += seats;
-        if(bookedSeats> totSeats){
-            throw new IllegalArgumentException("Errore, sono disponibili solo :" + (totSeats - originalBookeadSeats) + " posti.");
+
+        int wannaBookSeats = bookedSeats + seats;
+        if(wannaBookSeats> totSeats){
+            throw new IllegalArgumentException("Errore, sono disponibili solo " + (totSeats - bookedSeats) + " posti.");
+        }else{
+            bookedSeats += seats;
         }
+
     }
     public void cancelEventSeats(int seats){
-        int originalBookeadSeats = bookedSeats;
-        bookedSeats -= seats;
-        if(bookedSeats < 0){
-            throw new IllegalArgumentException("Errore, ci sono solo: " + (totSeats - originalBookeadSeats) + " posti.");
+        int wannaCancelSeats = bookedSeats - seats;
+        if(wannaCancelSeats < 0){
+            throw new IllegalArgumentException("Errore, ci sono " + bookedSeats + " posti prenotati.");
+        }else{
+            bookedSeats -= seats;
         }
+
     }
 
 
