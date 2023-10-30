@@ -7,7 +7,7 @@ public class Event {
     private String title;
     private LocalDate date;
     private final int totSeats;
-    private int bookedSeates;
+    private int bookedSeats;
 
     //Constructor
     public Event(String title, LocalDate date, int totSeats) {
@@ -18,7 +18,7 @@ public class Event {
         this.title = title;
         this.date = date;
         this.totSeats = totSeats;
-        this.bookedSeates = 0;
+        this.bookedSeats = 0;
     }
 
     //Methods
@@ -30,15 +30,17 @@ public class Event {
     }
 
     public void book(int seats){
-        bookedSeates += seats;
-        if(bookedSeates> totSeats){
-            throw new IllegalArgumentException("Posti non disponibili.");
+        int originalBookeadSeats = bookedSeats;
+        bookedSeats += seats;
+        if(bookedSeats> totSeats){
+            throw new IllegalArgumentException("Errore, sono disponibili solo :" + (totSeats - originalBookeadSeats) + " posti.");
         }
     }
     public void cancelEventSeats(int seats){
-        bookedSeates -= seats;
-        if(bookedSeates < 0){
-            throw new IllegalArgumentException("Non ci sono posti prenotati.");
+        int originalBookeadSeats = bookedSeats;
+        bookedSeats -= seats;
+        if(bookedSeats < 0){
+            throw new IllegalArgumentException("Errore, ci sono solo: " + (totSeats - originalBookeadSeats) + " posti.");
         }
     }
 
@@ -65,7 +67,7 @@ public class Event {
     }
 
     public int getBookedSeates() {
-        return bookedSeates;
+        return bookedSeats;
     }
 
     //Utility Methods
@@ -73,6 +75,7 @@ public class Event {
         if(date.isBefore(LocalDate.now())){
             throw new IllegalArgumentException("Data antecedente.");
         }
+
     }
     private void minTotSeates(int totSeats){
         if(totSeats <= 0){
