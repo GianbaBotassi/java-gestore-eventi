@@ -7,18 +7,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Event evento = null;
+        Event evento;
         boolean flagExit = false;
 
         System.out.println("Benvenuto nella creazione eventi.");
-
-        System.out.println("""
-                Digita:
-                1 - Inserisci evento
-                2 - Esci e stampa la lista Eventi""");
-        String choice = scanner.nextLine();
-        switch (choice) {
-            case "1":
+        while(true){
 
                 try {
                     System.out.print("Inserisci il titolo dell'evento: ");
@@ -40,12 +33,9 @@ public class Main {
                 } catch (DateTimeException e) {
                     System.out.println("Invalido formato data");
                 }
-            case "2":
-                break;
-            default:
-                System.out.println("Invalida scelta.");
         }
-        if (evento != null) {
+
+
 
             while (!flagExit) {
                 System.out.println("""
@@ -86,7 +76,6 @@ public class Main {
                         break;
                 }
             }
-        }
         scanner.close();
     }
 }

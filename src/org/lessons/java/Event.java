@@ -13,7 +13,7 @@ public class Event {
     public Event(String title, LocalDate date, int totSeats) {
 
         pastEvent(date);
-        minTotSeates(totSeats);
+        minTotSeats(totSeats);
 
         this.title = title;
         this.date = date;
@@ -30,7 +30,9 @@ public class Event {
     }
 
     public void book(int seats){
-
+        if(date.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("Evento già svolto.");
+        }
         int wannaBookSeats = bookedSeats + seats;
         if(wannaBookSeats> totSeats){
             throw new IllegalArgumentException("Errore, sono disponibili solo " + (totSeats - bookedSeats) + " posti.");
@@ -40,6 +42,9 @@ public class Event {
 
     }
     public void cancelEventSeats(int seats){
+        if(date.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("Evento già svolto.");
+        }
         int wannaCancelSeats = bookedSeats - seats;
         if(wannaCancelSeats < 0){
             throw new IllegalArgumentException("Errore, ci sono " + bookedSeats + " posti prenotati.");
@@ -82,7 +87,7 @@ public class Event {
         }
 
     }
-    private void minTotSeates(int totSeats){
+    private void minTotSeats(int totSeats){
         if(totSeats <= 0){
             throw new IllegalArgumentException("I posti non possono essere minori o uguali a zero.");
         }
