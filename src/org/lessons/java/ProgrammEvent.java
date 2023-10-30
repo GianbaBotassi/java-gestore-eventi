@@ -2,10 +2,8 @@ package org.lessons.java;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.function.Consumer;
 
 public class ProgrammEvent {
     //Attributes
@@ -48,6 +46,15 @@ public class ProgrammEvent {
         for (Map.Entry<LocalDate,String> elemento: orderList.entrySet()
              ) {
             System.out.println(elemento.getKey() + " - " + elemento.getValue());
+        }
+    }
+    //Metodo per filtrare dalla lista in base all'anno
+    public void filterList(int year){
+        for (Event evento:events
+             ) {
+            if(evento.getDate().getYear() == year){
+                System.out.println(evento);
+            }
         }
     }
 
